@@ -34,6 +34,9 @@ Fornecedor fornecedores[MAX_FORNECEDORES];
 Produto produtos[MAX_PRODUTOS];
 int contadorFornecedores = 0;
 int contadorProdutos = 0;
+int maiorIdFornecedor = 0;
+int maiorIdProduto = 0;
+
 
 // Protótipos de funções
 void carregarFornecedores();
@@ -58,7 +61,7 @@ void calcularMargemLucro();
 void incluirFornecedor() {
     if (contadorFornecedores < MAX_FORNECEDORES) {
         Fornecedor novo;
-        novo.id = rand();
+        novo.id = ++maiorIdFornecedor;
         printf("ID do novo fornecedor: %d\n", novo.id);
 
         printf("Nome: ");
@@ -189,7 +192,7 @@ void excluirFornecedor() {
 void incluirProduto() {
     if (contadorProdutos < MAX_PRODUTOS) {
         Produto novo;
-        novo.id = rand();
+        novo.id = ++maiorIdProduto;
         printf("ID do novo produto: %d\n", novo.id);
 
         printf("Nome do produto: ");
@@ -428,14 +431,18 @@ void carregarFornecedores() {
     }
 
     contadorFornecedores = 0;
-    // Ignorar a primeira linha (cabeçalho)
     char linha[200];
     fgets(linha, sizeof(linha), arquivo);
-    
+
     while (fgets(linha, sizeof(linha), arquivo)) {
         sscanf(linha, "%d;%[^;];%[^;];%[^;];%s\n", &fornecedores[contadorFornecedores].id,
                fornecedores[contadorFornecedores].nome, fornecedores[contadorFornecedores].telefone,
                fornecedores[contadorFornecedores].email, fornecedores[contadorFornecedores].dataInclusao);
+        
+        if (fornecedores[contadorFornecedores].id > maiorIdFornecedor) {
+            maiorIdFornecedor = fornecedores[contadorFornecedores].id;
+        }
+
         contadorFornecedores++;
     }
 
@@ -443,36 +450,24 @@ void carregarFornecedores() {
     printf("Fornecedores carregados com sucesso!\n");
 }
 
-void salvarFornecedores() {
-    FILE *arquivo = fopen(ARQUIVO_FORNECEDORES, "w");
-    if (arquivo == NULL) {
-        printf("Erro ao abrir o arquivo de fornecedores para escrita.\n");
-        return;
-    }
-
-    fprintf(arquivo, "ID;Nome;Telefone;Email;DataInclusao\n");
-    for (int i = 0; i < contadorFornecedores; i++) {
-        fprintf(arquivo, "%d;%s;%s;%s;%s\n", fornecedores[i].id, fornecedores[i].nome,
-                fornecedores[i].telefone, fornecedores[i].email, fornecedores[i].dataInclusao);
-    }
-
-    fclose(arquivo);
-}
-
 void carregarProdutos() {
     FILE *arquivo = fopen(ARQUIVO_PRODUTOS, "r");
     if (arquivo == NULL) return;
 
     contadorProdutos = 0;
-    // Ignorar a primeira linha (cabeçalho)
     char linha[200];
     fgets(linha, sizeof(linha), arquivo);
-    
+
     while (fgets(linha, sizeof(linha), arquivo)) {
         sscanf(linha, "%d;%[^;];%d;%f;%f;%[^;];%s\n", &produtos[contadorProdutos].id,
                produtos[contadorProdutos].nome, &produtos[contadorProdutos].quantidade,
                &produtos[contadorProdutos].preco, &produtos[contadorProdutos].precoVenda,
                produtos[contadorProdutos].categoria, produtos[contadorProdutos].dataInclusao);
+        
+        if (produtos[contadorProdutos].id > maiorIdProduto) {
+            maiorIdProduto = produtos[contadorProdutos].id;
+        }
+
         contadorProdutos++;
     }
 
