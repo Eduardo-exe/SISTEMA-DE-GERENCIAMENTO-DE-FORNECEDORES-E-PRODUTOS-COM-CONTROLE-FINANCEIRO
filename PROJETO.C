@@ -54,11 +54,13 @@ void menuGerenciamentoFinanceiro();
 void obterDataAtual(char *data);
 void abrirDadosNoExcel(const char *arquivo);
 void calcularMargemLucro();
+int gerarIdUnicoFornecedor();
+int gerarIdUnicoProduto();
 
 void incluirFornecedor() {
     if (contadorFornecedores < MAX_FORNECEDORES) {
         Fornecedor novo;
-        novo.id = rand();
+        novo.id = gerarIdUnicoFornecedor();
         printf("ID do novo fornecedor: %d\n", novo.id);
 
         printf("Nome: ");
@@ -85,6 +87,7 @@ void incluirFornecedor() {
         printf("Limite de fornecedores atingido!\n");
     }
 }
+
 
 void buscarFornecedor() {
     char nome[TAM_NOME];
@@ -497,6 +500,38 @@ void salvarProdutos() {
     fclose(arquivo);
 }
 
+int gerarIdUnicoFornecedor() {
+    int id = rand();
+    bool idExiste;
+    do {
+        idExiste = false;
+        for (int i = 0; i < contadorFornecedores; i++) {
+            if (fornecedores[i].id == id) {
+                idExiste = true;
+                id = rand();
+                break;
+            }
+        }
+    } while (idExiste);
+    return id;
+}
+
+int gerarIdUnicoProduto() {
+    int id = rand();
+    bool idExiste;
+    do {
+        idExiste = false;
+        for (int i = 0; i < contadorProdutos; i++) {
+            if (produtos[i].id == id) {
+                idExiste = true;
+                id = rand();
+                break;
+            }
+        }
+    } while (idExiste);
+    return id;
+}
+
 
 void obterDataAtual(char *data) {
     time_t t = time(NULL);
@@ -628,6 +663,7 @@ void menuGerenciamentoFinanceiro() {
 }
 
 int main() {
+    srand(time(NULL)); // Inicializa a semente do gerador de números aleatórios
     iniciarArquivoMargemLucro();
     carregarFornecedores();
     carregarProdutos();

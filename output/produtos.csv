@@ -1,12 +1,15 @@
 ID;Nome;Quantidade;PrecoCompra;PrecoVenda;Categoria;DataInclusao
-41;Teclado;200;250.00;300.00;Perifericos;14/06/2024
-42;Mouse;150;100.00;150.00;Perifericos;15/06/2024
-43;Monitor;50;700.00;850.00;Perifericos;16/06/2024
-44;Notebook;30;2500.00;3000.00;Computadores;17/06/2024
-45;Impressora;40;400.00;500.00;Perifericos;18/06/2024
-46;Cabo HDMI;300;20.00;30.00;Acessorios;19/06/2024
-47;Pen Drive;500;30.00;45.00;Acessorios;20/06/2024
-48;Webcam;120;200.00;250.00;Perifericos;21/06/2024
-49;Router;70;150.00;200.00;Redes;22/06/2024
-50;Switch;80;250.00;300.00;Redes;23/06/2024
-18467;Sapato;500;300.00;380.00;Cal‡ados;19/06/2024
+49827;Teclado;200;250.00;300.00;Perifericos;14/07/2024
+74198;Mouse;150;100.00;150.00;Perifericos;15/07/2024
+52813;Monitor;50;700.00;850.00;Perifericos;16/07/2024
+30478;Notebook;30;2500.00;3000.00;Computadores;17/07/2024
+91962;Impressora;40;400.00;500.00;Perifericos;18/07/2024
+36710;Cabo HDMI;300;20.00;30.00;Acessorios;19/07/2024
+14425;Pen Drive;500;30.00;45.00;Acessorios;20/07/2024
+72693;Webcam;120;200.00;250.00;Perifericos;21/08/2024
+82147;Router;70;150.00;200.00;Redes;22/08/2024
+65214;Switch;80;250.00;300.00;Redes;23/08/2024
+15283;Sapato;500;300.00;380.00;Calï¿½ados;19/08/2024
+93401;Pilha;200;300.00;350.00;Eletronico;19/08/2024
+54218;Controle;300;50.00;57.00;Perifericos;19/08/2024
+87593;Tablet;500;800.00;900.00;Tecnologia;19/08/2024
