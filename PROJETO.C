@@ -25,7 +25,7 @@ typedef struct {
     char nome[TAM_NOME];
     int quantidade;
     float preco;
-    float precoVenda;  // Novo campo para o preço de venda
+    float precoVenda;
     char categoria[TAM_CATEGORIA];
     char dataInclusao[TAM_DATA];
 } Produto;
@@ -126,27 +126,35 @@ void alterarFornecedor() {
             printf("\nDigite os novos dados (pressione Enter para manter o atual):\n");
 
             printf("Novo nome: ");
-            fgets(fornecedores[i].nome, TAM_NOME, stdin);
-            if (fornecedores[i].nome[0] != '\n') {
-                fornecedores[i].nome[strcspn(fornecedores[i].nome, "\n")] = '\0';
+            char novoNome[TAM_NOME];
+            fgets(novoNome, TAM_NOME, stdin);
+            if (novoNome[0] != '\n') {
+                novoNome[strcspn(novoNome, "\n")] = '\0';
+                strcpy(fornecedores[i].nome, novoNome);
             }
 
             printf("Novo telefone: ");
-            fgets(fornecedores[i].telefone, 15, stdin);
-            if (fornecedores[i].telefone[0] != '\n') {
-                fornecedores[i].telefone[strcspn(fornecedores[i].telefone, "\n")] = '\0';
+            char novoTelefone[15];
+            fgets(novoTelefone, 15, stdin);
+            if (novoTelefone[0] != '\n') {
+                novoTelefone[strcspn(novoTelefone, "\n")] = '\0';
+                strcpy(fornecedores[i].telefone, novoTelefone);
             }
 
             printf("Novo email: ");
-            fgets(fornecedores[i].email, 50, stdin);
-            if (fornecedores[i].email[0] != '\n') {
-                fornecedores[i].email[strcspn(fornecedores[i].email, "\n")] = '\0';
+            char novoEmail[50];
+            fgets(novoEmail, 50, stdin);
+            if (novoEmail[0] != '\n') {
+                novoEmail[strcspn(novoEmail, "\n")] = '\0';
+                strcpy(fornecedores[i].email, novoEmail);
             }
 
             printf("Nova data de inclusao (DD/MM/AAAA): ");
-            fgets(fornecedores[i].dataInclusao, TAM_DATA, stdin);
-            if (fornecedores[i].dataInclusao[0] != '\n') {
-                fornecedores[i].dataInclusao[strcspn(fornecedores[i].dataInclusao, "\n")] = '\0';
+            char novaDataInclusao[TAM_DATA];
+            fgets(novaDataInclusao, TAM_DATA, stdin);
+            if (novaDataInclusao[0] != '\n') {
+                novaDataInclusao[strcspn(novaDataInclusao, "\n")] = '\0';
+                strcpy(fornecedores[i].dataInclusao, novaDataInclusao);
             }
 
             salvarFornecedores();
@@ -231,7 +239,7 @@ void buscarProduto() {
             printf("Nome: %s\n", produtos[i].nome);
             printf("Quantidade: %d\n", produtos[i].quantidade);
             printf("Preco de compra: %.2f\n", produtos[i].preco);
-            printf("Preco de venda: %.2f\n", produtos[i].precoVenda);  // Exibir o preço de venda
+            printf("Preco de venda: %.2f\n", produtos[i].precoVenda);
             printf("Categoria: %s\n", produtos[i].categoria);
             printf("Data de Inclusao: %s\n", produtos[i].dataInclusao);
             produtosEncontrados++;
@@ -257,16 +265,18 @@ void alterarProduto() {
             printf("Nome atual: %s\n", produtos[i].nome);
             printf("Quantidade atual: %d\n", produtos[i].quantidade);
             printf("Preco de compra atual: %.2f\n", produtos[i].preco);
-            printf("Preco de venda atual: %.2f\n", produtos[i].precoVenda);  // Exibir o preço de venda atual
+            printf("Preco de venda atual: %.2f\n", produtos[i].precoVenda);
             printf("Categoria atual: %s\n", produtos[i].categoria);
             printf("Data de Inclusao atual: %s\n", produtos[i].dataInclusao);
 
             printf("\nDigite os novos dados (pressione Enter para manter o atual):\n");
 
             printf("Novo nome: ");
-            fgets(produtos[i].nome, TAM_NOME, stdin);
-            if (produtos[i].nome[0] != '\n') {
-                produtos[i].nome[strcspn(produtos[i].nome, "\n")] = '\0';
+            char novoNome[TAM_NOME];
+            fgets(novoNome, TAM_NOME, stdin);
+            if (novoNome[0] != '\n') {
+                novoNome[strcspn(novoNome, "\n")] = '\0';
+                strcpy(produtos[i].nome, novoNome);
             }
 
             printf("Nova quantidade: ");
@@ -283,7 +293,7 @@ void alterarProduto() {
                 produtos[i].preco = atof(precoStr);
             }
 
-            printf("Novo preco de venda: ");  // Novo campo
+            printf("Novo preco de venda: ");
             char precoVendaStr[20];
             fgets(precoVendaStr, 20, stdin);
             if (precoVendaStr[0] != '\n') {
@@ -291,15 +301,19 @@ void alterarProduto() {
             }
 
             printf("Nova categoria: ");
-            fgets(produtos[i].categoria, TAM_CATEGORIA, stdin);
-            if (produtos[i].categoria[0] != '\n') {
-                produtos[i].categoria[strcspn(produtos[i].categoria, "\n")] = '\0';
+            char novaCategoria[TAM_CATEGORIA];
+            fgets(novaCategoria, TAM_CATEGORIA, stdin);
+            if (novaCategoria[0] != '\n') {
+                novaCategoria[strcspn(novaCategoria, "\n")] = '\0';
+                strcpy(produtos[i].categoria, novaCategoria);
             }
 
             printf("Nova data de inclusao (DD/MM/AAAA): ");
-            fgets(produtos[i].dataInclusao, TAM_DATA, stdin);
-            if (produtos[i].dataInclusao[0] != '\n') {
-                produtos[i].dataInclusao[strcspn(produtos[i].dataInclusao, "\n")] = '\0';
+            char novaDataInclusao[TAM_DATA];
+            fgets(novaDataInclusao, TAM_DATA, stdin);
+            if (novaDataInclusao[0] != '\n') {
+                novaDataInclusao[strcspn(novaDataInclusao, "\n")] = '\0';
+                strcpy(produtos[i].dataInclusao, novaDataInclusao);
             }
 
             salvarProdutos();
@@ -309,6 +323,7 @@ void alterarProduto() {
     }
     printf("Produto nao encontrado.\n");
 }
+
 
 void excluirProduto() {
     char nome[TAM_NOME];
@@ -393,7 +408,6 @@ void calcularMargemLucro() {
 void iniciarArquivoMargemLucro() {
     FILE *arquivo = fopen("margem_lucro.csv", "r");
     if (arquivo == NULL) {
-        // O arquivo não existe, vamos criá-lo e adicionar o cabeçalho
         arquivo = fopen("margem_lucro.csv", "w");
         if (arquivo == NULL) {
             printf("Erro ao criar o arquivo de margem de lucro.\n");
@@ -408,16 +422,25 @@ void iniciarArquivoMargemLucro() {
 
 void carregarFornecedores() {
     FILE *arquivo = fopen(ARQUIVO_FORNECEDORES, "r");
-    if (arquivo == NULL) return;
+    if (arquivo == NULL) {
+        perror("Erro ao abrir arquivo de fornecedores");
+        return;
+    }
 
     contadorFornecedores = 0;
-    while (fscanf(arquivo, "%d,%[^,],%[^,],%[^,],%s\n", &fornecedores[contadorFornecedores].id,
-                  fornecedores[contadorFornecedores].nome, fornecedores[contadorFornecedores].telefone,
-                  fornecedores[contadorFornecedores].email, fornecedores[contadorFornecedores].dataInclusao) != EOF) {
+    // Ignorar a primeira linha (cabeçalho)
+    char linha[200];
+    fgets(linha, sizeof(linha), arquivo);
+    
+    while (fgets(linha, sizeof(linha), arquivo)) {
+        sscanf(linha, "%d;%[^;];%[^;];%[^;];%s\n", &fornecedores[contadorFornecedores].id,
+               fornecedores[contadorFornecedores].nome, fornecedores[contadorFornecedores].telefone,
+               fornecedores[contadorFornecedores].email, fornecedores[contadorFornecedores].dataInclusao);
         contadorFornecedores++;
     }
 
     fclose(arquivo);
+    printf("Fornecedores carregados com sucesso!\n");
 }
 
 void salvarFornecedores() {
@@ -560,6 +583,7 @@ void menuProdutos() {
         }
     } while (opcao != 0);
 }
+
 void gerarGraficoMargemLucro(const char *mesAno) {
     char comando[256];
     sprintf(comando, "python gerar_grafico.py %s", mesAno);
@@ -572,7 +596,7 @@ void abrirDadosMargemLucroNoExcel() {
 
 void menuGerenciamentoFinanceiro() {
     int opcao;
-    char mesAno[8];  // Formato MM/AAAA
+    char mesAno[8]; 
 
     do {
         printf("\n=== Gerenciamento Financeiro ===\n");
